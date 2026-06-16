@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=none">
+    <title>¡Feliz Cumpleaños!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-theme">
+
+    <!-- ==========================================
+         CONFIGURACIÓN DE VIDEOS DE FONDO 
+         ========================================== -->
+    <div class="video-background-container">
+        <video autoplay loop muted playsinline id="bgVideo1" class="bg-video active">
+            <source src="recursos/home-sweet-undertale-moewalls-com.mp4" type="video/mp4">
+        </video>
+        <video loop muted playsinline id="bgVideo2" class="bg-video">
+            <source src="recursos/Dark Fountain,Deltarune wallpaper.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- ==========================================
+         CAPA DE ICONOS PERSONALIZADOS FLOTANTES 
+         ========================================== -->
+    <div class="floating-icons-layer">
+        <img class="icon-item icon-1" src="recursos/delta-rune-deltarune.gif" alt="Icono 1">
+        <img class="icon-item icon-2" src="recursos/lancer-breakdance-lancer.gif" alt="Icono 2">
+        <img class="icon-item icon-3" src="recursos/rouxls-rouxls-kaard.gif" alt="Icono 3">
+        <img class="icon-item icon-4" src="recursos/susie-deltarune.gif" alt="Icono 4">
+        <img class="icon-item icon-5" src="recursos/deltarune-ralsei-dance.gif" alt="Icono 5">
+        <img class="icon-item icon-6" src="recursos/action-acting.gif" alt="Icono 6">
+        <img class="icon-item icon-7" src="recursos/roblox-dance.gif" alt="Icono 7">
+        <img class="icon-item icon-8" src="recursos/poob-regretevator.gif" alt="Icono 8">
+    </div> 
+
+    <!-- ==========================================
+         CONFIGURACIÓN DE AUDIOS / MÚSICA 
+         ========================================== -->
+    <div class="music-player">
+        <button id="musicBtn" onclick="toggleMusic()">🎵 Dame click </button>
+        <audio id="bgMusic1" src="recursos/012. Home (UNDERTALE Soundtrack) - Toby Fox.mp3" loop></audio>
+        <audio id="bgMusic2" src="recursos/26. TV WORLD (DELTARUNE Chapter 34 Soundtrack) - Toby Fox.mp3" loop></audio>
+    </div>
+
+    <!-- EL BOTÓN INTERRUPTOR (Se activa combinando las tarjetas 3, 5 y 7) -->
+    <button id="secretTrigBtn" class="secret-trigger-button" onclick="toggleDimension()">
+        Entrar al Dark World ?
+    </button>
+
+    <!-- TABLERO PRINCIPAL -->
+    <div class="grid-container" id="mainGrid">
+        
+        <!-- Casilla 1 -->
+        <div class="grid-card" data-id="1" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="front-icon-img" src="recursos/edgar.gif" alt="Portada 1">
+                    <h3>El Bodrio</h3>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/hold-my-hand-brawl-stars.gif" alt="Foto Reverso 1">
+                    </div>
+                    <p>Porque jugar este Bodrio contigo no puede ser mas divertido , nunca olvidare ese poco en mapa abierto y esa partida con dynamike kjfgshfb es divertido juegar contigo cada jueves :D</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Casilla 2 -->
+        <div class="grid-card" data-id="2" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="front-icon-img" src="recursos/whale-joe-hawley.gif" alt="Portada 2">
+                    <h3>La musica good</h3>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/song-happy.gif" alt="Foto Reverso 2">
+                    </div>
+                    <p>Porque, tu heres de las pocas personas por no decir la unica que realmente tiene mi estilo musical y compartir tantos gustos y saber que tu si le sabes jadjsa , es algo muy lindo yo ya se a quien darle un audifono mio y saber que ambos disfrutaremos de lo mismo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Casilla 3 (PARTE DEL COMBO DIMENSIONAL) -->
+        <div class="grid-card target-combo-card" data-id="3" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="front-icon-img" src="recursos/roblox-meme-123.gif" alt="Portada 3">
+                    <h3>Tu humor</h3>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/gaster-eating.gif" alt="Foto Reverso 3">
+                    </div>
+                    <p>Al igual que en la vida siempre se necesita reir , eres una persona muy graciosa y divertida , compartes un humor tan unico y especial que haria reir a cualquiera de verdad que si le sabes he y me haces reir mucho.Talvez deberias dejar volteada esta tarjeta solo digo ajhgdshf.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Casilla 4 -->
+        <div class="grid-card" data-id="4" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="front-icon-img" src="recursos/idle-pixel.gif" alt="Portada 4">
+                    <h3>Tu Persona</h3>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/dancing-annoying-dog-deltarune.gif" alt="Foto Reverso 4">
+                    </div>
+                    <p>Te fui conociendo de a poco pero cada dia me resultas mas una persona muy interesante y divertida , que tiene valores y sabe quees lo correcto cosa que actualmente no se ve mucho , tienes un monton de cualidades que te hacen unica y espero poder seguir conociendote.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASILLA CENTRAL (5): EL PASTEL (EASTER EGG 1: LA DEDICATORIA) -->
+        <div class="grid-card center-card target-combo-card" data-id="5" id="cakeCard" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="main-cake-img" src="recursos/jelly-pixel.gif" alt="Pastel Cumpleaños">
+                    <h2>¡FELIZ CUMPLE!</h2>
+                    <span class="pulse-text">Bueno no pude verte para tu cumple pero te queria regalar algo espero te guste esta pagina web que hize para ti :D</span>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/kawaii-anime.gif" alt="Foto Reverso Pastel">
+                    </div>
+                    <h2>Para Ti Ana jsjs</h2>
+                    <p class="main-dedication-text">Hoy es un dia muy especial sabes jsjas pero no lo dire aca , y talvez deberias dejar volteada esta tarjeta es un consejo de vida jsajs.</p>
+                    <div class="dedication">Con mucho cariño (obviamnete jsjs)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Casilla 6 -->
+        <div class="grid-card" data-id="6" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="front-icon-img" src="recursos/monhes.gif" alt="Portada 5">
+                    <h3>El Futuro</h3>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/mcsm-minecraft.gif" alt="Foto Reverso 5">
+                    </div>
+                    <p>seguramente y espero sea asi jasja porque te debo mucho helado espero conocerte mucho mas , algun dia salir de seguro y cometer uno que otro atentado o una triologi de peliculas con series y una precuela con libro sjkajs seguro que en un futuro nos divertimos aun mas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Casilla 7 (PARTE DEL COMBO DIMENSIONAL) -->
+        <div class="grid-card target-combo-card" data-id="7" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="front-icon-img" src="recursos/baskin-robins-ice-cream.gif" alt="Portada 6">
+                    <h3>Los dulces jajsa</h3>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/bugcat-capoo-ice-cream.gif" alt="Foto Reverso 6">
+                    </div>
+                    <p>Te debo un monton de helado jasja pero tambien probar distintos sabores como la competencia entre el vampiro y gusanito seria genial probar lo que te gusta y ver si es real porque la vida es buena siempre que hay helado jasja.Pdd talvez deberias dejar esta ultima tarjeta dada la vuelta he pero igual si quieres ;D</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Casilla 8 -->
+        <div class="grid-card" data-id="8" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="front-icon-img" src="recursos/final-fantasy-wizard.gif" alt="Portada 7">
+                    <h3>Cosas por ver</h3>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/dark-forest-magical.gif" alt="Foto Reverso 7">
+                    </div>
+                    <p>Hay un monton de esteticas y cosas lindas que me calman y a ti tambien espero que algun dia podamos sentarnos y ver un paisaje lindo sin preocuparse por nada un respiro de paz eres la unicapersona que se que lo disfrutaria conmigo jsja.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Casilla 9 -->
+        <div class="grid-card" data-id="9" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front-face">
+                    <img class="front-icon-img" src="recursos/hisoka-grinch.gif" alt="Portada 8">
+                    <h3>Las Series</h3>
+                </div>
+                <div class="card-back-face">
+                    <div class="card-img-container">
+                        <img src="recursos/かみ太.gif" alt="Foto Reverso 8">
+                    </div>
+                    <p>Tambien tu gusto excelente por las series tenia que ser recalcada , y como no si es una pagina web de cosas tuyas tenia que estar este personaje que en lo personal me parece de lo mejor de la serie jsajs Hisoka Morow , sin el una pagina web de cosas que te gustan no podria estar completa jsajs.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PANTALLA MODAL (EASTER EGG 2: DIMENSIÓN OSCURA) -->
+    <div id="secretScreen" class="secret-modal">
+        <div class="secret-content">
+            <span class="close-btn" onclick="closeSecret(event)">&times;</span>
+            <h2>Bienvenida al Dark World</h2>
+            <div class="secret-album-art">
+                <img src="recursos/tenna-ant-tenna.gif" alt="Álbum Favorito">
+            </div>
+            <h3>Lograste encontrar el Easter Egg, quedate en la version que mas te guste :D</h3>
+            <div class="secret-letter">
+                <p></p>
+                <p>Bueno espero que hoy la pases muy bien este dia especial que solo pasa una vez al año , espero la pases genial , que todo te salga bien y que cumplas muchoas años mas jasja en el poco tiempo que te conozco creo que me llegue a encariñar mucho jeje te quiero mucho disfruta el dia y este detalle :D </p>
+                <p>Esta es tu pagina web asi que si quieres mostrarla o presumirla es bueno completamente tuyo todo esto son tus dominios jajs puedes volver siempre que quieras y una vez mas FELIZ CUMPLEEE :D.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE CONTROL JAVASCRIPT -->
+    <script>
+        let secretDimensionActive = false;
+        let comboReady = false;
+
+        const music1 = document.getElementById('bgMusic1');
+        const music2 = document.getElementById('bgMusic2');
+        const musicBtn = document.getElementById('musicBtn');
+        const secretBtn = document.getElementById('secretTrigBtn');
+
+        // FUNCIÓN MEJORADA: Permite apagar y encender la música libremente en cualquier momento
+        function toggleMusic() {
+            const activeMusic = secretDimensionActive ? music2 : music1;
+            const inactiveMusic = secretDimensionActive ? music1 : music2;
+            
+            // Nos aseguramos siempre de mantener apagada la otra pista
+            inactiveMusic.pause();
+
+            if (activeMusic.paused) {
+                activeMusic.play().catch(e => console.log("Audio block active"));
+                musicBtn.innerText = "⏸️ Pausar Música";
+            } else {
+                activeMusic.pause();
+                musicBtn.innerText = "dame click :D";
+            }
+        }
+
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+            checkSecretCombo();
+        }
+
+        function checkSecretCombo() {
+            const card3 = document.querySelector('.grid-card[data-id="3"]');
+            const card5 = document.querySelector('.grid-card[data-id="5"]');
+            const card7 = document.querySelector('.grid-card[data-id="7"]');
+
+            if (card3.classList.contains('flipped') && 
+                card5.classList.contains('flipped') && 
+                card7.classList.contains('flipped')) {
+                
+                comboReady = true;
+                if (!secretDimensionActive) {
+                    secretBtn.innerText = "Entrar al Dark World ?";
+                    secretBtn.classList.add('reveal');
+                }
+            } else {
+                comboReady = false;
+                if (!secretDimensionActive) {
+                    secretBtn.classList.remove('reveal');
+                }
+            }
+        }
+
+        function toggleDimension() {
+            if (!secretDimensionActive) {
+                // ACTIVAR MODO OSCURO (EASTER EGG 2)
+                secretDimensionActive = true;
+                music1.pause();
+                
+                // Cambia automáticamente a la pista 2 y actualiza el botón
+                music2.play().catch(e => console.log("Audio 2 reproducido"));
+                musicBtn.innerText = "⏸️ Pausar Música";
+
+                secretBtn.innerText = "☀ Volver a Casa ?";
+                secretBtn.classList.add('cyber-btn');
+
+                document.getElementById('bgVideo1').classList.remove('active'); 
+                document.getElementById('bgVideo2').classList.add('active');    
+                document.getElementById('bgVideo2').play();                      
+
+                document.body.classList.remove('light-theme');
+                document.body.classList.add('cyber-secret-theme');
+
+                openSecret();
+            } else {
+                // REGRESAR AL MODO CLARO
+                secretDimensionActive = false;
+                music2.pause();
+                
+                // Cambia automáticamente a la pista 1 y actualiza el botón
+                music1.play().catch(e => console.log("Audio 1 reproducido"));
+                musicBtn.innerText = "⏸️ Pausar Música";
+
+                if (comboReady) {
+                    secretBtn.innerText = "Entrar al Dark World?";
+                    secretBtn.classList.remove('cyber-btn');
+                } else {
+                    secretBtn.classList.remove('reveal');
+                }
+
+                document.getElementById('bgVideo2').classList.remove('active'); 
+                document.getElementById('bgVideo1').classList.add('active');    
+                document.getElementById('bgVideo1').play();
+
+                document.body.classList.remove('cyber-secret-theme');
+                document.body.classList.add('light-theme');
+            }
+        }
+
+        function openSecret() {
+            document.getElementById('secretScreen').classList.add('active');
+        }
+
+        function closeSecret(event) {
+            if(event) event.stopPropagation();
+            document.getElementById('secretScreen').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
